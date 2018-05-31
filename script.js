@@ -26,11 +26,8 @@ $(document).ready(function(){
     // creates a new blend
     function createBlend(color1, color2){
         var newBlend = blendColors(hexArr(color1.val()), hexArr(color2.val()));
-        colorReturn.attr('style', 'background-color: ' + newBlend);
+        $('#color-return').attr('style', 'background-color: ' + newBlend);
     }
-    
-    // locates the items on the page
-    var colorReturn = $('#color-return');
     
     // sets the initial blend
     createBlend($('#input1'), $('#input2'));
