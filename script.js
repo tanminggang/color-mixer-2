@@ -1,63 +1,42 @@
 $(document).ready(function(){
-    // provides the color information in hex and rgb
-    var colors = {
-        red: [206,30,30], // #ce1e1e
-        orange: [255,124,0], // #ff7c00
-        yellow: [255,195,46], // #ffc32e
-        green: [111,151,48], // #6f9730
-        blue: [0,85,133], // #005585
-        purple: [87,8,71], // #570847
-        white: [255,255,255], // #ffffff
-        black: [0,0,0] // #000000
+    // converts hex colors to an rgb array
+    function hexArr(hex) {
+        hex = hex.slice(1);
+        var bigint = parseInt(hex, 16);
+        var r = (bigint >> 16) & 255;
+        var g = (bigint >> 8) & 255;
+        var b = bigint & 255;
+        return [r,g,b];
     }
     
-    // turns array into rgb(x,y,z) form
+    // turns an array into rgb(x,y,z) form
     function rgbify(arr){
         return 'rgb(' + arr.join() + ')';
     }
     
-    // creates the color palette
-    for (var key in colors){
-        if (colors.hasOwnProperty(key)) {
-            var rgb = rgbify(colors[key]);
-            var box = $('<div>');
-            box.attr('id', key);
-            box.attr('style', 'background-color: ' + rgb);
-            box.addClass('box');
-            $('#color-palette').append(box);
-        }
-    }
-        
-    // locates the mixer box
-    var mixerBox = $('#mixer-box');
-    
-    // get rgb color of mixer box
-    function getColors(){
-        var rgb = mixerBox.attr('style').replace('background-color: rgb(', '').replace(')', '').split(',');
-        return rgb.map(x => parseInt(x));
-    }
-    
     // blends two colors based on rgb values
-    function blendColors(startColor, addColor){
-        addColor = colors[addColor];
+    function blendColors(color1, color2){
         var newColor = [];
         for (i = 0; i < 3; i++) {
-            newColor[i] = Math.round((startColor[i] + addColor[i]) / 2)
+            newColor[i] = Math.round((color1[i] + color2[i]) / 2)
         }
-        return newColor;
+        return rgbify(newColor);
     }
     
-    // gets the color from the clicked box
-    $('.box').click(function(){
-        var clickedColor = $(this).attr('id');
-        if(mixerBox[0].hasAttribute('style')){
-            var mixedColor = getColors();
-            var newColor = blendColors(mixedColor, clickedColor);
-            mixerBox.attr('style', 'background-color: ' + rgbify(newColor));
-            
-        }
-        else {
-            mixerBox.attr('style', 'background-color: ' + rgbify(colors[clickedColor]));
-        }
-    });
+    // creates a new blend
+    function createBlend(color1, color2){
+        var newBlend = blendColors(hexArr(color1.val()), hexArr(color2.val()));
+        colorReturn.attr('style', 'background-color: ' + newBlend);
+    }
+    
+    // locates the items on the page
+    var colorReturn = $('#color-return');
+    
+    // sets the initial blend
+    createBlend($('#input1'), $('#input2'));
+    
+    // changes the blend when a new color is selected
+    $('input').change(function(){
+        createBlend($('#input1'), $('#input2'));
+    })
 });

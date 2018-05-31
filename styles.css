@@ -10,11 +10,17 @@ body {
     border: solid 1px black;
 }
 
-#mixer-box {
+#color-select input {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    margin: 2px;
+}
+
+#color-return {
     height: 150px;
     width: 150px;
     border: solid 1px black;
     margin-top: 10px;
     display: inline-block;
-    
 }
