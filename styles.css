@@ -1,26 +1,24 @@
-body {
+html, body {
     text-align: center;
+    width: 100%;
+}
+
+table {
+    margin: 0 auto;
+}
+
+table input {
+    height: 102px;
+    width: 100px;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
 }
 
 .box {
-    height: 50px;
-    width: 50px;
-    display: inline-block;
-    margin: 2px;
+    height: 100px;
+    width: 100px;
     border: solid 1px black;
-}
-
-#color-select input {
-    height: 50px;
-    width: 50px;
-    display: inline-block;
-    margin: 2px;
-}
-
-#color-return {
-    height: 150px;
-    width: 150px;
-    border: solid 1px black;
-    margin-top: 10px;
     display: inline-block;
 }

@@ -5,12 +5,28 @@
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <div id="color-select">
-            <input type="color" id="input1" value="#ff0000" />
-            <input type="color" id="input2" value="#0000ff" />
-        </div>
+        <h1>color mixer</h1>
+        <table>
+            <tr>
+                <td>
+                    <div id="input1-fake" class="box">
+                        <input type="color" id="input1" value="#ff0000" />
+                    </div>
+                </td>
+                <td>
+                    <div id="color-return" class="box"></div>
+                </td>
+                <td>
+                    <div id="input2-fake" class="box">
+                        <input type="color" id="input2" value="#0000ff" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+            
+            
+
         
-        <div id="color-return"></div>
         
         <script src="script.js"></script>
     </body>
