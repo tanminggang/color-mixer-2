@@ -27,3 +27,7 @@ table input {
     border: solid 1px black;
     display: inline-block;
 }
+
+#hex-blend {
+    margin-top: 102px;
+}
