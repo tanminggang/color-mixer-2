@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>color mixer</h1>
-        <table>
+        <table id="blend-maker">
             <tr>
                 <td>
                     <div id="input1-fake" class="box">
@@ -16,7 +16,7 @@
                 </td>
                 <td>
                     <div id="color-return" class="box">
-                        <div id="hex-blend"></div>
+                        <div id="hex-blend" class="hex"></div>
                     </div>
                 </td>
                 <td>
@@ -26,6 +26,13 @@
                     </div>
                 </td>
             </tr>
+        </table>
+        
+        <button id="save">save blend</button>
+        
+        <h1 class="hidden">saved colors</h1>
+        <table id="saved-blends">
+            <tr></tr>
         </table>
 
         <script src="script.js"></script>

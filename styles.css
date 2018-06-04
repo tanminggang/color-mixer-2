@@ -28,6 +28,14 @@ table input {
     display: inline-block;
 }
 
-#hex-blend {
+.hex {
     margin-top: 102px;
+}
+
+button {
+    margin: 10px;
+}
+
+.hidden {
+    display: none;
 }

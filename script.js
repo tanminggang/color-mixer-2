@@ -1,7 +1,8 @@
+/* global $ */
 $(document).ready(function(){
     // converts hex colors to an rgb array
-    // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-    function hexToRgb(hex) {
+    function hex2rgb(hex) {
+        // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
         hex = hex.replace(/[^A-Za-z0-9\s]/g,'')
         var bigint = parseInt(hex, 16);
         var r = (bigint >> 16) & 255;
@@ -11,8 +12,8 @@ $(document).ready(function(){
     }
     
     // converts rgb colors to hex #
-    // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-    function rgbToHex(r, g, b) {
+    function rgb2hex(r, g, b) {
+        // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
         return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
     }
     
@@ -32,12 +33,13 @@ $(document).ready(function(){
     
     // creates a new blend
     function createBlend(color1, color2){
-        var newBlend = blendColors(hexToRgb(color1.val()), hexToRgb(color2.val()));
+        var newBlend = blendColors(hex2rgb(color1.val()), hex2rgb(color2.val()));
         $('#color-return').attr('style', 'background-color: ' + newBlend);
         var rgb = newBlend.replace(/[^0-9,]/g, "").split(',').map(x => parseInt(x));
-        $('#hex-blend').html(rgbToHex(rgb[0], rgb[1], rgb[2]));
+        $('#hex-blend').html(rgb2hex(rgb[0], rgb[1], rgb[2]));
     }
     
+    // customizes the appearance of the "inputs"
     function setFakeInputs(color1, color2){
         $('#input1-fake').attr('style', 'background-color: ' + color1.val());
         $('#input2-fake').attr('style', 'background-color: ' + color2.val());
@@ -54,4 +56,20 @@ $(document).ready(function(){
         createBlend($('#input1'), $('#input2'));
         setFakeInputs($('#input1'), $('#input2'))
     })
+    
+    // save a color blend
+    $('#save').click(function(){
+        if($('h1').hasClass('hidden')) $('h1').removeClass('hidden');
+        
+        var hex = $('<div>');
+        hex.addClass('hex');
+        
+        var blend = $('<div>');
+        blend.addClass('box');
+        blend.attr('style', $('#color-return').attr('style'));
+        blend.html(hex.html($('#hex-blend').html()))
+        blend = $('<td>').html(blend);
+        
+        $('#saved-blends tr').append(blend);
+    });
 });
