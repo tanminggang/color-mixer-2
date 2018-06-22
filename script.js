@@ -72,4 +72,12 @@ $(document).ready(function(){
         
         $('#saved-blends tr').append(blend);
     });
+    
+    // deletes a saved blend
+    $('#saved-blends').click(function(x){
+        var dialog = confirm("Delete this color?");
+        if (dialog == true) {
+            $(x.target).parent().remove();
+        }
+    });
 });

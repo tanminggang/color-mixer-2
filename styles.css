@@ -39,3 +39,16 @@ button {
 .hidden {
     display: none;
 }
+
+tr {
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+#saved-blends {
+    max-width: 650px;
+}
+
+#saved-blends td {
+    float: left;
+}
