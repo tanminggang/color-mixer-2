@@ -59,7 +59,7 @@ $(document).ready(function(){
     
     // save a color blend
     $('#save').click(function(){
-        if($('h1').hasClass('hidden')) $('h1').removeClass('hidden');
+        $('.hidden').removeClass('hidden');
         
         var hex = $('<div>');
         hex.addClass('hex');
@@ -71,10 +71,16 @@ $(document).ready(function(){
         blend = $('<td>').html(blend);
         
         $('#saved-blends tr').append(blend);
+
+        // use html2canvas to generate an image of the blends for download
+        html2canvas($('#saved-blends').get(0), {scale: 1}).then(function(canvas) {
+            var image = canvas.toDataURL("image/jpeg", 1);
+            $('#download').attr('href', image);
+        });
     });
     
     // deletes a saved blend
-    $('#saved-blends').click(function(x){
+    $('#saved-blends').dblclick(function(x){
         var dialog = confirm("Delete this color?");
         if (dialog == true) {
             $(x.target).parent().remove();
