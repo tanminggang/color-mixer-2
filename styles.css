@@ -2,6 +2,7 @@ html, body {
     text-align: center;
     width: 100%;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
 h1 {
